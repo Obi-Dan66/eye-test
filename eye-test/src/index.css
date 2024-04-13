@@ -35,3 +35,9 @@ h1 {
   line-height: 1.1;
   color: black;
 }
+
+p {
+  display: block; /* Ensure the <p> tag is displayed as a block element */
+  margin: 10px 0; /* Add margin for spacing */
+  color: #333; /* Set text color */
+}
