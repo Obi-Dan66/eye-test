@@ -7,6 +7,7 @@ import AstigmTest from './components/astigmTest.jsx';
 import ColorTest from './components/colorTest.jsx';
 import ContrastTest from './components/contrastTest.jsx';
 import EyeFieldTest from './components/eyeFieldTest.jsx';
+import SharptestStart from './components/sharptestStart.jsx';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/colortest" element={<ColorTest />} />
         <Route path="/eyefieldtest" element={<EyeFieldTest />} />
         <Route path="/contrasttest" element={<ContrastTest />} />
+        <Route path="/sharptestStart" element={<SharptestStart />}/>
       </Routes>
     </Router>
   );

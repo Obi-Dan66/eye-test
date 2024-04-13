@@ -2,11 +2,9 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: white;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -41,3 +39,36 @@ p {
   margin: 10px 0; /* Add margin for spacing */
   color: #333; /* Set text color */
 }
+
+#pg {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 12px;
+}
+
+.testBegin {
+  width: 200px;
+  }
+  
+  .selectTest {
+  width: 200px;
+  }
+  
+  .homePage {
+    display: block;
+  }
+
+  .sharp {
+    height: 50px;
+    width: 70px;
+    clip-path: polygon(22.5% 50%, 77.5% 50%, 100% 0, 0 0);
+    transform-origin: 0 0;
+    position: absolute;
+  }
+
+  .sharpButtonsDiv {
+    width: 500;
+    height: 500;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
