@@ -1,7 +1,7 @@
 // astigmTest.jsx
 import React from 'react';
 
-const AstigmTest = () => {
+const AstigmatismTest = () => {
   return (
     <div>
       <h1>This is the Astigmatism Test Page</h1>
@@ -10,4 +10,4 @@ const AstigmTest = () => {
   );
 }
 
-export default AstigmTest;
+export default AstigmatismTest;
