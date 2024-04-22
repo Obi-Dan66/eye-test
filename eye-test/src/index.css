@@ -1,7 +1,7 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 200;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: white;
@@ -20,6 +20,31 @@ html,body {
   height: 100vh;
 }
 
+.consent{
+  margin: auto;
+  width: 50%;
+  text-align:left;
+}
+
+.consent h1 {
+  font-size: 2rem;
+}
+
+.consent button {
+  margin-top: 20px;
+  width: 100%;
+  background-color: transparent;
+  color: #0055ab;
+  border-width: 2px;
+  border-color: #0055ab;
+}
+
+.consent button:hover {
+  background-color:#002ead;
+  transition: 0.7s;
+  color: white;
+}
+
 .homePage{
 width: 50%;
 margin: auto;
@@ -34,10 +59,12 @@ margin: auto;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 2rem;
+  line-height: 1.0;
+  font-weight: 200;
   color: black;
 }
+
 
 p {
   display: block; /* Ensure the <p> tag is displayed as a block element */
@@ -186,10 +213,12 @@ p {
   position: relative;
   width: 320px;
   height: 200px;
-  background-color: lightblue;
+  background-color: white;
   border: 2px dashed grey;
   border-radius: 10px;
   transform-origin: bottom right;
+  padding: 10px;
+  margin: 10px;
 }
 
 .slider {
@@ -284,4 +313,69 @@ p {
 
 .color-image {
   margin-top: 30px;
+}
+
+.media-space-container{
+  margin: auto;
+  width: 40%;
+  text-align:center;
+}
+
+.media-space-container h1 {
+  font-size: 2rem;
+}
+
+.card-container-wrapper{
+  margin: auto;
+  width: 50%;
+  margin-top: 100px;
+}
+
+.slider-no-change {
+  margin: auto;
+  width: 50%;
+  text-align: left;
+}
+
+.slider-no-change-button {
+  width: 100%;
+  background-color: transparent;
+  color: #0055ab;
+  border-width: 2px;
+  border-color: #0055ab;
+  height: 50px;
+  border-width: 2px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+.slider-no-change-button:hover {
+  background-color:#002ead;
+  transition: 0.7s;
+  color: white;
+}
+
+.slider-next {
+  width: 100%;
+}
+
+.be-ready {
+  margin: auto;
+  width: 70%;
+}
+
+.be-ready-svgs {
+  padding: 0px;
+  margin: 0px;
+}
+
+.be-ready-svgs svg {
+  width: auto;
+  height: 100px;
+}
+
+.be-ready-svgs :nth-child(2){
+  width: auto;
+  height: 100px;
 }

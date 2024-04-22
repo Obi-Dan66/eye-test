@@ -3,13 +3,29 @@ import React, { useState } from 'react';
 const InstructionsSharpTest = () => {
   const [currentContent, setCurrentContent] = useState(0);
   const [sliderValue, setSliderValue] = useState(50); // Define sliderValue here
+  const [sliderChanged, setSliderChanged] = useState(false);
 
-  const totalContents = 7;
+  const totalContents = 8;
 
   const handleNext = () => {
+    // Move to the next content, wrapping around with modulo operation
     setCurrentContent((prevContent) => (prevContent + 1) % totalContents);
   };
 
+  const handlePrev = () => {
+    setCurrentContent((prevContent) => {
+      // Check if the current content is the first step
+      if (prevContent === 0) {
+        // Optionally, handle the case when there's no previous content. 
+        // For example, you might not change the content or you might loop to the last case.
+        // This example simply keeps the user on the first case.
+        return prevContent;
+      } else {
+        // Move back to the previous case
+        return prevContent - 1;
+      }
+    });
+  };
   
   const startTest = () => {
     // Redirect to '/another-page' when a button is clicked
@@ -18,21 +34,22 @@ const InstructionsSharpTest = () => {
 
   const handleSliderChange = (e) => {
     setSliderValue(e.target.value);
+    setSliderChanged(true);
   };
 
   const getContent = (contentIndex) => {
     switch (contentIndex) {
       case 0:
         return (
-            <div>
-                <h1>Před zahájením si tyto informace prosím přečtěte a přijměte je.</h1>
+            <div className='consent'>
+                <h1><b>Před zahájením si tyto informace prosím přečtěte a přijměte je.</b></h1>
                 <p>Toto online vyšetření zraku slouží k tomu, aby vám poskytlo první posouzení vašeho aktuálního zraku. Nejedná se o lékařské vyšetření a nenahrazuje oční péči poskytovanou odborným lékařem. Není určeno k diagnóze onemocnění či zmírnění, léčbě či prevenci nemoci. Toto vyšetření vám má pouze poskytnout obecný přehled o vaší zrakové ostrosti a informaci, zda je pro vás vhodné absolvovat odborné vyšetření očí. Doporučujeme, abyste si oči nechali kontrolovat odborným lékařem každé dva roky či dříve, pokud si povšimnete změn svého zraku. Společnost Erste Optik s.r.o. ani žádná jiná společnost, která náleží do skupiny spřátelných optik, nepřijímá odpovědnost za škody či následky plynoucí z online vyšetření zraku a/nebo poskytnutých informací.</p>
                 <button className='defaultButton' onClick={handleNext}>Souhlasím</button>
 
         </div>);
       case 1:
         return (
-            <div>
+            <div className="media-space-container">
               <div className="media-space">
                   <app-icon id="preparation_brightness" name="preparation_brightness" alt="">
                      <svg width="74" height="175" viewBox="0 0 74 175" fill="none" xmlns="http://www.w3.org/2000/svg" alt="">
@@ -48,20 +65,21 @@ const InstructionsSharpTest = () => {
                      </svg>
                   </app-icon>
               </div>
-                <h1>Abyste dosáhli co nejpřesnějších výsledků, nastavte na svém zařízení jas obrazovky na maximum.</h1>
+                <h1>Abyste dosáhli co nejpřesnějších výsledků <b>,nastavte na svém zařízení jas obrazovky na maximum.</b></h1>
 
                 <button className='defaultButton' onClick={handleNext}>Další krok</button>
         </div>);
       case 2:
+        const scaleFactor = 0.5 + (sliderValue / 100);
         return (
-            <div>
+            <div className='card-container-wrapper'>
            <div className="page-container">
       <div className="card-container">
         <div
           className="card"
           style={{
-            width: `${320 + (sliderValue * 1.2)}px`,
-            height: `${200 + (sliderValue * 0.8)}px`,
+            transform: `scale(${scaleFactor})`, // Apply scale factor here
+            transition: 'transform 0.1s linear',
           }}
         ><p>Můžete použít jakýkoliv běžný průkaz, kreditní či bankovní kartu. Tak si nastavíte velikost stínítka své obrazovky pro daný test. Ničeho se nebojte, tento test je zdarma. Nechceme tímto způsobem shromažďovat žádné informace.</p></div>
       </div>
@@ -79,17 +97,19 @@ const InstructionsSharpTest = () => {
         />
       </div>
     </div>
-                <h1>Abyste nastavili velikost obrazovky, umístěte kartu na rámeček a k vyrovnání použijte posuvník.</h1>
+                <h1><b>Abyste nastavili velikost obrazovky</b>, umístěte kartu na rámeček a k vyrovnání použijte posuvník.</h1>
                 <button className='defaultButton' onClick={handleNext}>Další krok</button>
         </div>);
       case 3:
         return (
-            <div>
-              <svg fill="#000000" height="200px" width="200px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 472.62 472.62" xmlSpace="preserve" stroke="#000000" strokeWidth="0.00472615"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M472.615,205.774h-25.344c-12.797-37.99-48.686-65.462-90.935-65.462c-43.224,0-79.837,28.73-91.823,68.087 c-7.582-5.011-17.305-8.115-28.211-8.115c-10.903,0-20.624,3.103-28.207,8.114c-11.989-39.357-48.608-68.085-91.831-68.085 c-42.249,0-78.135,27.472-90.93,65.462H0v19.692h20.925c-0.403,3.565-0.656,7.175-0.656,10.846 c0,52.933,43.063,95.99,95.995,95.99s96-43.058,96-95.99c0-0.552-0.073-1.085-0.083-1.635h0.069 c0-6.952,9.88-14.702,24.053-14.702c14.178,0,24.053,7.75,24.053,14.702h0.073c-0.01,0.549-0.083,1.083-0.083,1.635 c0,52.933,43.058,95.99,95.99,95.99s96-43.058,96-95.99c0-3.671-0.253-7.281-0.656-10.846h20.935V205.774z M116.264,312.611 c-42.072,0-76.303-34.231-76.303-76.298c0-42.077,34.231-76.308,76.303-76.308c42.077,0,76.308,34.231,76.308,76.308 C192.572,278.38,158.341,312.611,116.264,312.611z M356.337,312.611c-42.067,0-76.298-34.231-76.298-76.298 c0-42.077,34.231-76.308,76.298-76.308c42.077,0,76.308,34.231,76.308,76.308C432.644,278.38,398.413,312.611,356.337,312.611z"></path> </g> </g> </g></svg>
+            <div className='be-ready'>
+              <div className='be-ready-svgs'>
+              <svg fill="#000000" height="200px" width="200px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 472.62 472.62" xmlSpace="preserve" stroke="#000000" strokeWidth="0.00472615"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" className='glasses'></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M472.615,205.774h-25.344c-12.797-37.99-48.686-65.462-90.935-65.462c-43.224,0-79.837,28.73-91.823,68.087 c-7.582-5.011-17.305-8.115-28.211-8.115c-10.903,0-20.624,3.103-28.207,8.114c-11.989-39.357-48.608-68.085-91.831-68.085 c-42.249,0-78.135,27.472-90.93,65.462H0v19.692h20.925c-0.403,3.565-0.656,7.175-0.656,10.846 c0,52.933,43.063,95.99,95.995,95.99s96-43.058,96-95.99c0-0.552-0.073-1.085-0.083-1.635h0.069 c0-6.952,9.88-14.702,24.053-14.702c14.178,0,24.053,7.75,24.053,14.702h0.073c-0.01,0.549-0.083,1.083-0.083,1.635 c0,52.933,43.058,95.99,95.99,95.99s96-43.058,96-95.99c0-3.671-0.253-7.281-0.656-10.846h20.935V205.774z M116.264,312.611 c-42.072,0-76.303-34.231-76.303-76.298c0-42.077,34.231-76.308,76.303-76.308c42.077,0,76.308,34.231,76.308,76.308 C192.572,278.38,158.341,312.611,116.264,312.611z M356.337,312.611c-42.067,0-76.298-34.231-76.298-76.298 c0-42.077,34.231-76.308,76.298-76.308c42.077,0,76.308,34.231,76.308,76.308C432.644,278.38,398.413,312.611,356.337,312.611z"></path> </g> </g> </g></svg>
               
               <svg><rect className="rect-separator" width="65" height="2.2" transform="translate(117.074 58.91) rotate(-65)"></rect></svg>
 
               <svg><g transform="translate(-681 -314.447)"><ellipse className="a" cx="19.5" cy="19.501" rx="19.5" ry="19.501" transform="translate(834.5 327.469)"></ellipse><path className="b" d="M-16025.607-23759.816l8.551,14.533,1.109,3.838-1.109,4.93-2.937,3.24-4.98,1.809-4.612-.734-3.98-2.959-1.807-4.635.649-4.943,2.692-4.494Z" transform="translate(16896 24082)"></path><g transform="translate(250.742 76.369)"><path d="M586.416,271.721v.5h2.161l0-.694a15.29,15.29,0,0,1,15.272-15.205h.069l.5,0V254.17l-.5,0A17.568,17.568,0,0,0,586.416,271.721Z" transform="translate(0 -0.503)"></path><path d="M628.829,259.415,619.61,243.63l-5.425,9.293a21.2,21.2,0,0,0-10.817-2.99h-.033a21.055,21.055,0,0,0-14.88,6.084,20.688,20.688,0,0,0-.046,29.484A21.06,21.06,0,0,0,603.3,291.63h0a21.123,21.123,0,0,0,20.774-17.424c.286-.131.576-.257.849-.413a10.47,10.47,0,0,0,4.961-6.39A10.353,10.353,0,0,0,628.829,259.415Zm-15.058,11.5a8.491,8.491,0,0,1-1.461-10.742l7.3-12.469,7.318,12.481a8.489,8.489,0,0,1-1.485,10.737C622.5,273.738,616.619,273.743,613.77,270.913Zm-3.376-11.5a10.432,10.432,0,0,0,1.693,12.706,10.627,10.627,0,0,0,7.519,3.08h0a10.714,10.714,0,0,0,2.247-.259,19.048,19.048,0,0,1-18.435,14.6h-.061a18.955,18.955,0,0,1-13.375-5.457,18.543,18.543,0,0,1-5.6-13.255A18.9,18.9,0,0,1,603.307,252h.091a18.908,18.908,0,0,1,9.748,2.706Z"></path></g></g></svg>
+              </div>
                 <h1>Budte připraveni. Nasadte si brýle nebo kontaktní čočky (pokud nějaké nosíte).</h1>
                 <button className='defaultButton' onClick={handleNext}>Další krok</button>
         </div>);

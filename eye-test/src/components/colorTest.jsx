@@ -4,21 +4,23 @@ const ColorTest = () => {
   const [currentContent, setCurrentContent] = useState(0);
   const [sliderValue, setSliderValue] = useState(50); // Define sliderValue here
   const [results, setResults] = useState([]); // Array to store results
+  const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
 
   const totalContents = 7;
 
-  const handleNext = () => {
+  const handleClick = (isCorrect) => {
+    // Increment correct answers count if the answer is correct
+    if (isCorrect) {
+      setCorrectAnswersCount(prevCount => prevCount + 1);
+    }
+  
+    // Move to the next content
     setCurrentContent((prevContent) => (prevContent + 1) % totalContents);
   };
 
-  
   const startTest = () => {
     // Redirect to '/another-page' when a button is clicked
     window.location.href = '/test-zrakove-ostrosti';
-  };
-
-  const handleSliderChange = (e) => {
-    setSliderValue(e.target.value);
   };
 
   const getContent = (contentIndex) => {
@@ -33,10 +35,10 @@ const ColorTest = () => {
                 <div className='colorTestCard' style={{backgroundColor:'white'}}>
                 <img className= "color-image" src='src\assets\12.svg' width={200} height={200} alt="color test"></img>
                 <div>
-                <button className='colorTestBtn' onClick={handleNext}>31</button>
-                <button className='colorTestBtn' onClick={handleNext}>12</button>
-                <button className='colorTestBtn' onClick={handleNext}>71</button>
-                <button className='colorTestBtn' onClick={handleNext}>Nic</button>
+                <button className='colorTestBtn' onClick={() => handleClick(false)}>31</button>
+                <button className='colorTestBtn correct' onClick={() => handleClick(true)}>12</button>
+                <button className='colorTestBtn' onClick={() => handleClick(false)}>71</button>
+                <button className='colorTestBtn' onClick={() => handleClick(false)}>Nic</button>
               </div>
             </div>
         </div>);
@@ -50,10 +52,10 @@ const ColorTest = () => {
           <div className='colorTestCard' style={{backgroundColor:'white'}}>
           <img className= "color-image" src='src\assets\8.svg' width={200} height={200} alt="color test"></img>
           <div>
-          <button className='colorTestBtn' onClick={handleNext}>8</button>
-          <button className='colorTestBtn' onClick={handleNext}>3</button>
-          <button className='colorTestBtn' onClick={handleNext}>11</button>
-          <button className='colorTestBtn' onClick={handleNext}>Nic</button>
+          <button className='colorTestBtn correct' onClick={() => handleClick(true)}>8</button>
+          <button className='colorTestBtn' onClick={() => handleClick(false)}>3</button>
+          <button className='colorTestBtn' onClick={() => handleClick(false)}>11</button>
+          <button className='colorTestBtn' onClick={() => handleClick(false)}>Nic</button>
         </div>
         </div>
   </div>);
@@ -67,10 +69,10 @@ const ColorTest = () => {
           <div className='colorTestCard' style={{backgroundColor:'white'}}>
           <img className= "color-image" src='src\assets\3.svg' width={200} height={200} alt="color test"></img>
           <div>
-          <button className='colorTestBtn' onClick={handleNext}>5</button>
-          <button className='colorTestBtn' onClick={handleNext}>3</button>
-          <button className='colorTestBtn' onClick={handleNext}>27</button>
-          <button className='colorTestBtn' onClick={handleNext}>Nic</button>
+          <button className='colorTestBtn' onClick={() => handleClick(false)}>5</button>
+          <button className='colorTestBtn correct' onClick={() => handleClick(true)}>3</button>
+          <button className='colorTestBtn' onClick={() => handleClick(false)}>27</button>
+          <button className='colorTestBtn' onClick={() => handleClick(false)}>Nic</button>
         </div>
       </div>
   </div>);
@@ -84,10 +86,10 @@ const ColorTest = () => {
           <div className='colorTestCard' style={{backgroundColor:'white'}}>
           <img className= "color-image" src='src\assets\45.svg' width={200} height={200} alt="color test"></img>
           <div>
-          <button className='colorTestBtn' onClick={handleNext}>36</button>
-          <button className='colorTestBtn' onClick={handleNext}>45</button>
-          <button className='colorTestBtn' onClick={handleNext}>60</button>
-          <button className='colorTestBtn' onClick={handleNext}>Nic</button>
+          <button className='colorTestBtn' onClick={() => handleClick(false)}>36</button>
+          <button className='colorTestBtn correct' onClick={() => handleClick(true)}>45</button>
+          <button className='colorTestBtn' onClick={() => handleClick(false)}>60</button>
+          <button className='colorTestBtn' onClick={() => handleClick(false)}>Nic</button>
         </div>
       </div>
   </div>);
@@ -101,10 +103,10 @@ const ColorTest = () => {
           <div className='colorTestCard' style={{backgroundColor:'white'}}>
           <img className= "color-image" src='src\assets\5.svg' width={200} height={200} alt="color test"></img>
           <div>
-          <button className='colorTestBtn' onClick={handleNext}>5</button>
-          <button className='colorTestBtn' onClick={handleNext}>57</button>
-          <button className='colorTestBtn' onClick={handleNext}>14</button>
-          <button className='colorTestBtn' onClick={handleNext}>Nic</button>
+          <button className='colorTestBtn correct' onClick={() => handleClick(true)}>5</button>
+          <button className='colorTestBtn' onClick={() => handleClick(false)}>57</button>
+          <button className='colorTestBtn' onClick={() => handleClick(false)}>14</button>
+          <button className='colorTestBtn' onClick={() => handleClick(false)}>Nic</button>
         </div>
       </div>
   </div>);
@@ -118,18 +120,31 @@ const ColorTest = () => {
           <div className='colorTestCard' style={{backgroundColor:'white'}}>
             <img className= "color-image" src='src\assets\nic.svg' width={200} height={200} alt="color test"></img>
             <div>
-            <button className='colorTestBtn' onClick={handleNext}>45</button>
-            <button className='colorTestBtn' onClick={handleNext}>70</button>
-            <button className='colorTestBtn' onClick={handleNext}>6</button>
-            <button className='colorTestBtn' onClick={handleNext}>Nic</button>
+            <button className='colorTestBtn' onClick={() => handleClick(false)}>45</button>
+            <button className='colorTestBtn' onClick={() => handleClick(false)}>70</button>
+            <button className='colorTestBtn' onClick={() => handleClick(false)}>6</button>
+            <button className='colorTestBtn correct' onClick={() => handleClick(true)}>Nic</button>
           </div>
       </div>
   </div>);
       case 6:
+        let imageUrl;
+        if (correctAnswersCount === 6) {
+          imageUrl = 'src/assets/image1.jpg';
+        } else if (correctAnswersCount === 4 || correctAnswersCount === 5) {
+          imageUrl = 'src/assets/image2.jpg';
+        } else {
+          imageUrl = 'src/assets/image3.jpg';
+        }
+      
         return (
-           <div>
-                
-        </div>);
+          <div>
+            <h1>Test Results</h1>
+            <p>You have identified {correctAnswersCount} correct answers.</p>
+            <img src={imageUrl} alt="Result" />
+            {/* Additional logic to display more detailed results or feedback */}
+          </div>
+        );
       default:
         return null;
     }
