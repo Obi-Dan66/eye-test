@@ -1,6 +1,6 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  line-height: 1.2;
   font-weight: 200;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -15,9 +15,10 @@
 
 html,body {
   background-color: #eeeeee;
+  /*background-color: grey;*/
   border-radius: 10px;
   margin: 0;
-  height: 100vh;
+  height: 100%;
 }
 
 .consent{
@@ -60,7 +61,7 @@ margin: auto;
 
 h1 {
   font-size: 2rem;
-  line-height: 1.0;
+  line-height: 1.1;
   font-weight: 200;
   color: black;
 }
@@ -70,6 +71,7 @@ p {
   display: block; /* Ensure the <p> tag is displayed as a block element */
   margin: 10px 0; /* Add margin for spacing */
   color: #333; /* Set text color */
+  font-size: 1.5rem;
 }
 
 #pg {
@@ -134,43 +136,33 @@ p {
     margin-left: auto;
 }
 
-.top {
-  transform: rotate(0deg) translateX(0.5px);
-}
-
-.topLeft {
-  transform: rotate(-45deg) translateY(71px) translateX(-29px);
-}
-
-.topRight {
-  transform: rotate(45deg);
-}
-
-.right {
-  transform: rotate(90deg) translateY(130px) translateX(70px);
-}
-
-.left {
-  transform: rotate(-90deg) translateY(-270px) translateX(-170px);
-}
-
-.bottomLeft {
-  transform: rotate(-135deg) translateY(-452px) translateX(113px);
-}
-
-.bottomRight {
-  transform: rotate(135deg)translateY(113px) translateX(353px);
-}
-
-.bottom {
-  transform: rotate(180deg)translateY(-240px) translateX(500px);
-}
-
-.circle1{
-  width: 50px;
-  height: 50px;
+.circle1 {
+  width: 260px;
+  height: 260px;
   margin: auto;
-  transform: rotate(5deg) scale(1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle1 svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(0deg) /*translateX(85px) translateY(-30px)*/;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.sharpTestContainer {
+  background-color: #F0F0F1;
+  border-radius: 30px;
+  padding: 20px;
+  margin: auto;
+  width: 25%;
+  display: grid;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 50vh;
 }
 
 .app-icon-container {
@@ -179,18 +171,19 @@ p {
 }
 
 .left-hand {
-  animation: move 2s linear infinite alternate;
+  margin-left: -110px;
+  animation: move 3s linear infinite alternate; /* Adjusted duration to account for pause */
 }
 
 @keyframes move {
-  0% {
-      transform: translateY(0);
+  0%, 20% {
+    transform: translateY(0);
   }
-  50% {
-      transform: translateY(-30px);
+  40%, 60% {
+    transform: translateY(-40px);
   }
-  100% {
-      transform: translateY(0);
+  80%, 100% {
+    transform: translateY(0);
   }
 }
 
@@ -221,6 +214,11 @@ p {
   margin: 10px;
 }
 
+.card p {
+  padding-top: 8%;
+  font-size: 13px;
+}
+
 .slider {
   writing-mode: vertical-lr;
   direction: rtl;
@@ -245,12 +243,6 @@ p {
   align-items: center;
   height: 30vh; /* Set the height to 100% of the viewport height */
 }
-
-.sharptestCircle{
-  width: 100%;
-  height: 100%;
-}
-
 
 
 
@@ -330,6 +322,9 @@ p {
   width: 50%;
   margin-top: 100px;
 }
+.card-container-wrapper h1 {
+  margin-top: 50px;
+}
 
 .slider-no-change {
   margin: auto;
@@ -379,3 +374,27 @@ p {
   width: auto;
   height: 100px;
 }
+
+svg path:hover {
+  fill: #cccccc; /* Change color on hover */
+  cursor: pointer; /* Change cursor to indicate clickable area */
+}
+
+.eyes-result {
+  display: inline;
+  justify-content: space-between;
+}
+
+.resultDescriptionLeft {
+  display: flex;
+  justify-content: center;
+  margin-right: 0px;
+}
+
+.resultDescriptionRight {
+  display: flex;
+  justify-content: center;
+  margin-left: 45px;
+}
+
+/*astigmatism test*/

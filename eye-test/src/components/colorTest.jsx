@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 
 const ColorTest = () => {
   const [currentContent, setCurrentContent] = useState(0);
-  const [sliderValue, setSliderValue] = useState(50); // Define sliderValue here
-  const [results, setResults] = useState([]); // Array to store results
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
 
   const totalContents = 7;
@@ -18,17 +16,12 @@ const ColorTest = () => {
     setCurrentContent((prevContent) => (prevContent + 1) % totalContents);
   };
 
-  const startTest = () => {
-    // Redirect to '/another-page' when a button is clicked
-    window.location.href = '/test-zrakove-ostrosti';
-  };
-
   const getContent = (contentIndex) => {
     switch (contentIndex) {
       case 0:
         return (
             <div>
-                <h1>Barevné vidění</h1>
+                <h1><b>Barevné vidění</b></h1>
                 <p>1 - Mějte obě oči otevřené.</p>
                 <p>2 - Zařízení držte na délku paže.</p>
                 <p>3 - Vyberte číslo, které vidíte v kruhu.</p>
@@ -45,7 +38,7 @@ const ColorTest = () => {
       case 1:
         return (
           <div>
-          <h1>Barevné vidění</h1>
+          <h1><b>Barevné vidění</b></h1>
           <p>1 - Mějte obě oči otevřené.</p>
           <p>2 - Zařízení držte na délku paže.</p>
           <p>3 - Vyberte číslo, které vidíte v kruhu.</p>
@@ -62,7 +55,7 @@ const ColorTest = () => {
       case 2:
         return (
           <div>
-          <h1>Barevné vidění</h1>
+          <h1><b>Barevné vidění</b></h1>
           <p>1 - Mějte obě oči otevřené.</p>
           <p>2 - Zařízení držte na délku paže.</p>
           <p>3 - Vyberte číslo, které vidíte v kruhu.</p>
@@ -79,7 +72,7 @@ const ColorTest = () => {
       case 3:
         return (
           <div>
-          <h1>Barevné vidění</h1>
+          <h1><b>Barevné vidění</b></h1>
           <p>1 - Mějte obě oči otevřené.</p>
           <p>2 - Zařízení držte na délku paže.</p>
           <p>3 - Vyberte číslo, které vidíte v kruhu.</p>
@@ -96,7 +89,7 @@ const ColorTest = () => {
       case 4:
         return (
           <div>
-          <h1>Barevné vidění</h1>
+          <h1><b>Barevné vidění</b></h1>
           <p>1 - Mějte obě oči otevřené.</p>
           <p>2 - Zařízení držte na délku paže.</p>
           <p>3 - Vyberte číslo, které vidíte v kruhu.</p>
@@ -113,7 +106,7 @@ const ColorTest = () => {
       case 5:
         return (
           <div>
-          <h1>Barevné vidění</h1>
+          <h1><b>Barevné vidění</b></h1>
           <p>1 - Mějte obě oči otevřené.</p>
           <p>2 - Zařízení držte na délku paže.</p>
           <p>3 - Vyberte číslo, které vidíte v kruhu.</p>
@@ -129,20 +122,32 @@ const ColorTest = () => {
   </div>);
       case 6:
         let imageUrl;
+        let resultText= "";
         if (correctAnswersCount === 6) {
-          imageUrl = 'src/assets/image1.jpg';
+          imageUrl = 'src/assets/greenface.svg';
+          resultText = "Vaše barevné vidění se zdá být vynikající.";
         } else if (correctAnswersCount === 4 || correctAnswersCount === 5) {
-          imageUrl = 'src/assets/image2.jpg';
+          imageUrl = 'src/assets/yellowface.svg';
+          resultText = "Vaše barevné vidění se zdá být v pořádku.";
         } else {
-          imageUrl = 'src/assets/image3.jpg';
+          imageUrl = 'src/assets/redface.svg';
+          resultText = "Vaše barevné vidění se zdá být omezené.";
         }
       
         return (
           <div>
-            <h1>Test Results</h1>
-            <p>You have identified {correctAnswersCount} correct answers.</p>
-            <img src={imageUrl} alt="Result" />
-            {/* Additional logic to display more detailed results or feedback */}
+            <h1><b>Výsledek testu barevného vidění</b></h1>
+            <div className='eyes-result'>
+            <img src={imageUrl} alt="ResultLeft" />
+            <img src={imageUrl} alt="ResultRight" />
+            <div className='resultDescriptionLeft'>
+              <p>Levé</p>
+              <div className='resultDescriptionRight'>
+              <p>Pravé</p>
+              </div>
+            </div>
+            </div>
+            <p>{resultText}</p>
           </div>
         );
       default:
