@@ -14,8 +14,8 @@
 }
 
 html,body {
-  background-color: #eeeeee;
-  /*background-color: grey;*/
+ /* background-color: #eeeeee;*/
+  background-color: grey;
   border-radius: 10px;
   margin: 0;
   height: 100%;

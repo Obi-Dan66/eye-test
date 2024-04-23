@@ -5,7 +5,7 @@ const InstructionsSharpTest = () => {
   const [sliderValue, setSliderValue] = useState(50); // Define sliderValue here
   const [sliderChanged, setSliderChanged] = useState(false);
 
-  const totalContents = 7;
+  const totalContents = 6;
 
   const handleNext = () => {
     // Move to the next content, wrapping around with modulo operation
