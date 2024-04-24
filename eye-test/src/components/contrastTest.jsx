@@ -36,18 +36,36 @@ const ContrastTest = () => {
       return; // Skip the rest of the handleClick logic
     }
   
+    // Debugging: Log the current content and the button clicked
+    console.log(`Current content: ${currentContent}, Clicked button: ${buttonId}`);
+    console.log(`Correct button: ${correctButtonForCase[currentContent]}`);
+  
     // Check if the clicked button is the correct answer for the current case
     if (correctButtonForCase[currentContent] === buttonId) {
+      console.log("User clicked the correct button!");
       // Increment correct answers for the specific range
       if (currentContent >= 0 && currentContent <= 7) {
-        setCorrectAnswersRange1(prevCount => prevCount + 1);
+        setCorrectAnswersRange1(prevCount => {
+          console.log(`Incrementing Range 1 from ${prevCount} to ${prevCount + 1}`);
+          return prevCount + 1;
+        });
       } else if (currentContent >= 9 && currentContent <= 16) {
-        setCorrectAnswersRange2(prevCount => prevCount + 1);
+        setCorrectAnswersRange2(prevCount => {
+          console.log(`Incrementing Range 2 from ${prevCount} to ${prevCount + 1}`);
+          return prevCount + 1;
+        });
       }
+    } else {
+      console.log("User clicked the wrong button.");
     }
   
     // Move to the next content, with logic to potentially handle end of test or transition between sections
-    setCurrentContent(prevContent => (prevContent + 1) % totalCases);
+    setCurrentContent(prevContent => {
+      const newContent = (prevContent + 1) % totalCases;
+      console.log(`Moved to next content: ${newContent}`);
+      return newContent;
+    });
+  
     setClickedButton(null); // Reset clicked button for visual feedback
   };
 
@@ -127,6 +145,37 @@ const ContrastTest = () => {
   );
 };
 
+const renderSvgContainer2 = (clickedButton, handleClick, transformStyle, colorStyle) => {
+  return (
+    <div className='sharptestCircle'>
+  <h1><b>Kontrastní vidění</b></h1>
+  <p>1 - Zakryjte si pravé oko.</p>
+  <p>2 - Zařízení držte na délku paže.</p>
+  <p>3 - Vidíte horní kruh? Označte příslušný bod.</p>
+
+  <div className='sharpTestContainer'>
+  <div className="sharpTestCircleSmall"style={{ transform: transformStyle }}>
+    <svg width="25" height="25" viewBox="0 0 3 3" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1.785,0.015c0.684,0.139 1.2,0.745 1.2,1.47c0,0.828 -0.672,1.5 -1.5,1.5c-0.828,0 -1.5,-0.672 -1.5,-1.5c0,-0.725 0.516,-1.331 1.2,-1.47l0,0.69c-0.321,0.119 -0.55,0.424 -0.55,0.78c0,0.46 0.381,0.833 0.85,0.833c0.469,0 0.85,-0.373 0.85,-0.833c0,-0.356 -0.229,-0.661 -0.55,-0.78l0,-0.69Z" style={{ fill: colorStyle }}></path>
+    </svg>
+  </div>
+  <div className='circle1'>
+  <svg viewBox="0 0 100% 100%" xmlns="http://www.w3.org/2000/svg">
+  <path id="TOP" onClick={() => handleClick('TOP')} style={{ opacity: clickedButton === 'TOP' ? 0 : 1 }} d="M158.934 57.545a77.47 77.47 0 00-13.211-3.957 78.642 78.642 0 00-31.437 0 77.47 77.47 0 00-13.211 3.957l-19.9-48.059a130.162 130.162 0 0197.674 0z"></path>
+  <path id="TOPRIGHT" onClick={() => handleClick('TOPRIGHT')} style={{ opacity: clickedButton === 'TOPRIGHT' ? 0 : 1 }} d="M201.693 99.226a78.216 78.216 0 00-40.914-40.914l19.906-48.059a130.414 130.414 0 0169.066 69.066l-48.059 19.907z"></path>
+  <path id="RIGHT" onClick={() => handleClick('RIGHT')} style={{ opacity: clickedButton === 'RIGHT' ? 0 : 1 }} d="M202.459 158.933a77.41 77.41 0 003.959-13.213 78.785 78.785 0 000-31.437 77.477 77.477 0 00-3.957-13.209l48.057-19.9a129.319 129.319 0 016.844 22.635 130.2 130.2 0 01-6.844 75.036z"></path>
+  <path id="BOTTOMRIGHT" onClick={() => handleClick('BOTTOMRIGHT')} style={{ opacity: clickedButton === 'BOTTOMRIGHT' ? 0 : 1 }} d="M160.779 201.692a78.193 78.193 0 0024.379-16.535 78.8 78.8 0 009.525-11.545 77.993 77.993 0 007.008-12.833l48.061 19.907a130.393 130.393 0 01-69.068 69.064z"></path>
+  <path id="BOTTOM" onClick={() => handleClick('BOTTOM')} style={{ opacity: clickedButton === 'BOTTOM' ? 0 : 1 }} d="M130 260.001a130.826 130.826 0 01-26.2-2.641 129.332 129.332 0 01-22.639-6.846l19.906-48.058a77.615 77.615 0 0013.213 3.957 78.642 78.642 0 0031.438 0 77.47 77.47 0 0013.211-3.957l19.906 48.058a129.181 129.181 0 01-22.639 6.846A130.778 130.778 0 01130 260.001z"></path>
+  <path id="BOTTOMLEFT" onClick={() => handleClick('BOTTOMLEFT')} style={{ opacity: clickedButton === 'BOTTOMLEFT' ? 0 : 1 }} d="M79.316 249.75a130.42 130.42 0 01-69.066-69.063l48.057-19.9a78.285 78.285 0 0028.084 33.9 77.645 77.645 0 0012.836 7.015z"></path>
+  <path id="LEFT" onClick={() => handleClick('LEFT')} style={{ opacity: clickedButton === 'LEFT' ? 0 : 1 }} d="M9.486 178.84a130.148 130.148 0 010-97.673l48.055 19.9a78.1 78.1 0 000 57.865z"></path>
+  <path id="TOPLEFT" onClick={() => handleClick('TOPLEFT')} style={{ opacity: clickedButton === 'TOPLEFT' ? 0 : 1 }} d="M10.252 79.316a130.414 130.414 0 0169.064-69.064l19.908 48.059a77.664 77.664 0 00-12.834 7.014 78.166 78.166 0 00-28.084 33.9z"></path>
+  </svg>
+  </div>
+</div>
+</div>
+);
+};
+
 const transformStyle1 = transformStyles[currentContent] || 'rotate(0deg)';
 const colorStyle1 = colorStyles[currentContent] || 'rgba(0, 0, 0, 1)';
 const transformStyle2 = transformStyles[currentContent] || 'rotate(0deg)';
@@ -165,66 +214,57 @@ switch (currentContent) {
   case 16:
     const transformStyle2 = transformStyles[currentContent] || 'rotate(0deg)';
     const colorStyle2 = colorStyles[currentContent] || 'rgba(0, 0, 0, 1)';
-    return renderSvgContainer(clickedButton, handleClick, transformStyle2, colorStyle2);
+    return renderSvgContainer2(clickedButton, handleClick, transformStyle2, colorStyle2);
   case 17:
-      let imageUrl1;
-      let imageUrl2;
-      let resultText = "";
-       // Evaluate results
-        if (correctAnswersRange1 === 8 || 7  && correctAnswersRange2 === 8 || 7 )  {
-          resultText = "Vaše kontrastní vidění obou očí se zdá být vynikající.";
-          imageUrl1 = 'src/assets/greenface.svg';
-          imageUrl2 = 'src/assets/greenface.svg';
-        } else if (correctAnswersRange1 === 8 || 7  && correctAnswersRange2 === 6 || 5 ) {
-          resultText = "Vaše kontrastní vidění jednoho oka se zdá být v pořádku.";
-          imageUrl1 = "src/assets/yellowface.svg";
-          imageUrl2 = "src/assets/greenface.svg";
-        } else if (correctAnswersRange1 === 8 || 7  && correctAnswersRange2 < 5 ) {
-          resultText = "Vaše kontrastní vidění jednoho oka se zdá být omezené.";
-          imageUrl1 = "src/assets/redface.svg";
-          imageUrl2 = "src/assets/greenface.svg";
-        } else if (correctAnswersRange1 === 6 || 5  && correctAnswersRange2 === 8 || 7 ) {
-          resultText = "Vaše kontrastní vidění jednoho oka se zdá být v pořádku.";
-          imageUrl1 = "src/assets/greenface.svg";
-          imageUrl2 = "src/assets/yellowface.svg";
-        } else if (correctAnswersRange1 === 6 || 5  && correctAnswersRange2 ===6 || 5 ) {
-          resultText = "Vaše kontrastní vidění obou očí se zdá být v pořádku.";
-          imageUrl1 = "src/assets/yellowface.svg";
-          imageUrl2 = "src/assets/yellowface.svg";
-        } else if (correctAnswersRange1 === 6 || 5  && correctAnswersRange2 < 5 ) {
-          resultText = "Vaše kontrastní vidění jednoho oka se zdá být omezené.";
-          imageUrl1 = "src/assets/redface.svg";
-          imageUrl2 = "src/assets/yellowface.svg";
-        } else if (correctAnswersRange1 < 5  && correctAnswersRange2 === 8 || 7 ) {
-          resultText = "Vaše kontrastní vidění jednoho oka se zdá být omezené.";
-          imageUrl1 = "src/assets/greenface.svg";
-          imageUrl2 = "src/assets/redface.svg";
-        } else if (correctAnswersRange1 < 5  && correctAnswersRange2 === 6 || 5 ) {
-          resultText = "Vaše kontrastní vidění jednoho oka se zdá být omezené.";
-          imageUrl1 = "src/assets/yellowface.svg";
-          imageUrl2 = "src/assets/redface.svg";
-        } else if (correctAnswersRange1 < 5  && correctAnswersRange2 < 5 ) {
-          resultText = "Vaše kontrastní vidění obou očí se zdá být omezené.";
-          imageUrl1 = "src/assets/redface.svg";
-          imageUrl2 = "src/assets/redface.svg";
-        }
-      
-        return (
-          <div>
-            <h1><b>Výsledek testu kontrastního vidění</b></h1>
-            <p>{resultText}</p>
-            <div className='eyes-result'>
+      let imageUrl1, imageUrl2, resultText;
+    
+      // Determine imageUrl2 based on correctAnswersRange1
+      if (correctAnswersRange1 >= 7) {
+        imageUrl2 = 'src/assets/greenface.svg';
+      } else if (correctAnswersRange1 >= 5 && correctAnswersRange1 <= 6) {
+        imageUrl2 = 'src/assets/yellowface.svg';
+      } else {
+        imageUrl2 = 'src/assets/redface.svg';
+      }
+    
+      // Determine imageUrl1 based on correctAnswersRange2
+      if (correctAnswersRange2 >= 7) {
+        imageUrl1 = 'src/assets/greenface.svg';
+      } else if (correctAnswersRange2 >= 5 && correctAnswersRange1 <= 6) {
+        imageUrl1 = 'src/assets/yellowface.svg';
+      } else {
+        imageUrl1 = 'src/assets/redface.svg';
+      }
+    
+      // Determine resultText based on the combination of imageUrl1 and imageUrl2
+      if (imageUrl1 === 'src/assets/greenface.svg' && imageUrl2 === 'src/assets/greenface.svg') {
+        resultText = "Vaše kontrastní vidění obou očí se zdá být vynikající."; // Both are green
+      } else if (imageUrl1 === 'src/assets/redface.svg' && imageUrl2 === 'src/assets/redface.svg') {
+        resultText = "Vaše kontrastní vidění obou očí se zdá být omezené."; // Both are red
+      } else if (imageUrl1 === 'src/assets/yellowface.svg' && imageUrl2 === 'src/assets/yellowface.svg') {
+        resultText = "Vaše kontrastní vidění obou očí se zdá být v pořádku."; // Both are yellow
+      } else if (imageUrl1 === 'src/assets/redface.svg' || imageUrl2 === 'src/assets/redface.svg') {
+        resultText = "Vaše kontrastní vidění jednoho oka se zdá být omezené."; // At least one is red
+      } else if (imageUrl1 === 'src/assets/yellowface.svg' || imageUrl2 === 'src/assets/yellowface.svg') {
+        resultText = "Vaše kontrastní vidění jednoho oka se zdá být v pořádku."; // At least one is yellow
+      }
+    
+      return (
+        <div>
+          <h1><b>Výsledek testu kontrastního vidění</b></h1>
+          <p>{resultText}</p>
+          <div className='eyes-result'>
             <img src={imageUrl1} alt="ResultLeft" />
             <img src={imageUrl2} alt="ResultRight" />
             <div className='resultDescriptionLeft'>
               <p>Levé</p>
               <div className='resultDescriptionRight'>
-              <p>Pravé</p>
+                <p>Pravé</p>
               </div>
             </div>
-            </div>
           </div>
-        );
+        </div>
+      );
   default:
     // Handle any other cases or provide a default case
     return null;
