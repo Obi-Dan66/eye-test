@@ -135,11 +135,19 @@ const ColorTest = () => {
         }
       
         return (
+          <div>
           <div className='eyes-result-container'>
             <h1><b>Výsledek testu barevného vidění</b></h1>
+            <p>{resultText}</p>
             <div className='eyes-result'>
+              <div className='eyes-result-images'>
+              <div className='eyes-result-left'>
             <img src={imageUrl} alt="ResultLeft" />
+            </div>
+            <div className="eyes-result-right">
             <img src={imageUrl} alt="ResultRight" />
+            </div>
+            </div>
             <div className='resultDescriptionLeft'>
               <p>Levé</p>
               <div className='resultDescriptionRight'>
@@ -147,8 +155,12 @@ const ColorTest = () => {
               </div>
             </div>
             </div>
-            <p>{resultText}</p>
-            
+          </div>
+          <div className='result-map'>
+          <img src="src/assets/resultMap.svg" alt="ResultMap" />
+          <p><b>Vyhledejte optika společnosti Erste Optik ve své blízkosti.</b> Pro kompletní vyšetření zraku vždy vyhledejte profesionálního očního lékaře.</p>
+          <button className='defaultButton'>Zobrazit specialisty v mé blízkosti</button>
+          </div>
           </div>
         );
       default:
