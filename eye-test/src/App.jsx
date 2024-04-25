@@ -7,7 +7,7 @@ import InstructionsContrastTest from './components/instructionsContrastTest.jsx'
 import InstructionsAstigmatismTest from './components/instructionsAstigmatismTest.jsx';
 import InstructionsEyeFieldTest from './components/instructionsEyeFieldTest.jsx';
 import InstructionsColorTest from './components/instructionsColorTest.jsx';
-import SharpTest from './components/sharpTest.jsx';
+import SharpTest from './components/sharptest.jsx';
 import ContrastTest from './components/contrastTest.jsx';
 import AstigmatismTest from './components/astigmatismTest.jsx';
 import EyeFieldTest from './components/eyeFieldTest.jsx';
