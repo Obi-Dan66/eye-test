@@ -8,9 +8,26 @@
 }
 
 .test-selection-container{
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: center;
+}
+
+.test-selection {
+background-color: white;
+margin: auto;
+margin-top: 10px;
+border-radius: 30px;
+width: 25%;
+padding: 10px;
+}
+
+.test-selection button {
+  margin-top: 10px;
+}
+
+.test-selection h2 {
+  color: #000000;
 }
 
 html,body {
@@ -18,7 +35,6 @@ html,body {
   /*background-color: grey; */
   border-radius: 10px;
   margin: 0;
-  height: 100%;
 }
 
 .consent{
@@ -44,6 +60,10 @@ html,body {
   background-color:#002ead;
   transition: 0.7s;
   color: white;
+}
+
+.home{
+  margin-top: 10%;
 }
 
 .homePage{
@@ -397,9 +417,29 @@ svg path:hover {
   cursor: pointer; /* Change cursor to indicate clickable area */
 }
 
+.eyes-result-container{
+background-color: white;
+border-radius: 30px;
+margin: auto;
+width: 50%;
+padding: 10px;
+}
+
 .eyes-result {
-  display: inline;
   justify-content: space-between;
+}
+
+.eyes-result-images {
+  display: flex;
+  justify-content: center;
+}
+
+.eyes-result-left {
+  margin-right: 10px;
+}
+
+.eyes-result-right  {
+  margin-left: 10px;
 }
 
 .resultDescriptionLeft {
@@ -411,5 +451,18 @@ svg path:hover {
 .resultDescriptionRight {
   display: flex;
   justify-content: center;
-  margin-left: 45px;
+  margin-left: 66px;
+}
+
+.result-map {
+  background-color: white;
+  border-radius: 30px;
+  margin: auto;
+  width: 50%;
+  margin-top: 80px;
+  padding:10px;
+}
+
+.result-map button {
+  margin-top: 10px;
 }

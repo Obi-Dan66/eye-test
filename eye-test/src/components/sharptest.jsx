@@ -108,7 +108,7 @@ switch (currentContent) {
         }
       
         return (
-          <div>
+          <div className='eyes-result-container'>
             <h1><b>Výsledek testu zrakové ostrosti</b></h1>
             <div className='eyes-result'>
             <img src={imageUrl} alt="ResultLeft" />

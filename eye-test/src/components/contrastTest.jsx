@@ -251,19 +251,32 @@ switch (currentContent) {
     
       return (
         <div>
-          <h1><b>Výsledek testu kontrastního vidění</b></h1>
+        <div className='eyes-result-container'>
+          <h1><b>Výsledek testu zorného pole</b></h1>
           <p>{resultText}</p>
           <div className='eyes-result'>
-            <img src={imageUrl1} alt="ResultLeft" />
-            <img src={imageUrl2} alt="ResultRight" />
-            <div className='resultDescriptionLeft'>
-              <p>Levé</p>
-              <div className='resultDescriptionRight'>
-                <p>Pravé</p>
-              </div>
+            <div className='eyes-result-images'>
+            <div className='eyes-result-left'>
+          <img src={imageUrl1} alt="ResultLeft" />
+          </div>
+          <div className="eyes-result-right">
+          <img src={imageUrl2} alt="ResultRight" />
+          </div>
+          </div>
+          <div className='resultDescriptionLeft'>
+            <p>Levé</p>
+            <div className='resultDescriptionRight'>
+            <p>Pravé</p>
             </div>
           </div>
+          </div>
         </div>
+        <div className='result-map'>
+        <img src="src/assets/resultMap.svg" alt="ResultMap" />
+        <p><b>Vyhledejte optika společnosti Erste Optik ve své blízkosti.</b> Pro kompletní vyšetření zraku vždy vyhledejte profesionálního očního lékaře.</p>
+        <button className='defaultButton'>Zobrazit specialisty v mé blízkosti</button>
+        </div>
+      </div>
       );
   default:
     // Handle any other cases or provide a default case

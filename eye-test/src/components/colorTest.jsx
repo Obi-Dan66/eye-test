@@ -135,7 +135,7 @@ const ColorTest = () => {
         }
       
         return (
-          <div>
+          <div className='eyes-result-container'>
             <h1><b>Výsledek testu barevného vidění</b></h1>
             <div className='eyes-result'>
             <img src={imageUrl} alt="ResultLeft" />
@@ -148,6 +148,7 @@ const ColorTest = () => {
             </div>
             </div>
             <p>{resultText}</p>
+            
           </div>
         );
       default:
