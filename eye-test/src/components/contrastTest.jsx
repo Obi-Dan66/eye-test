@@ -36,33 +36,24 @@ const ContrastTest = () => {
       return; // Skip the rest of the handleClick logic
     }
   
-    // Debugging: Log the current content and the button clicked
-    console.log(`Current content: ${currentContent}, Clicked button: ${buttonId}`);
-    console.log(`Correct button: ${correctButtonForCase[currentContent]}`);
-  
     // Check if the clicked button is the correct answer for the current case
     if (correctButtonForCase[currentContent] === buttonId) {
-      console.log("User clicked the correct button!");
       // Increment correct answers for the specific range
       if (currentContent >= 0 && currentContent <= 7) {
         setCorrectAnswersRange1(prevCount => {
-          console.log(`Incrementing Range 1 from ${prevCount} to ${prevCount + 1}`);
           return prevCount + 1;
         });
       } else if (currentContent >= 9 && currentContent <= 16) {
         setCorrectAnswersRange2(prevCount => {
-          console.log(`Incrementing Range 2 from ${prevCount} to ${prevCount + 1}`);
           return prevCount + 1;
         });
       }
     } else {
-      console.log("User clicked the wrong button.");
     }
   
     // Move to the next content, with logic to potentially handle end of test or transition between sections
     setCurrentContent(prevContent => {
       const newContent = (prevContent + 1) % totalCases;
-      console.log(`Moved to next content: ${newContent}`);
       return newContent;
     });
   
