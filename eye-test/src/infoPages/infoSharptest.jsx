@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 
 
-const InfoSharptest = ({ title, description, imageUrl, testInstructionsUrl }) => {
+const InfoSharptest = () => {
   const [dividerPosition, setDividerPosition] = useState(50); // Initial position of the divider
   const containerRef = useRef(null);
 
@@ -34,9 +34,6 @@ const InfoSharptest = ({ title, description, imageUrl, testInstructionsUrl }) =>
       <div className='info-sharp-decription'>
       <h2><b>Proč kontrolovat ostrost svého zraku?</b></h2>
       <p>Zraková ostrost &#40;schopnost rozpoznat malé detaily&#41; se může postupně měnit, což znamená, že si nemusíte malých změn ve svém zraku všimnout. Proto je důležité pravidelně si kontrolovat zrak. Zrak si můžete kontrolovat s pomocí našich vyšetření a následné konzultace s optikem, který provede kompletní vyšetření.</p>
-      <div className='info-images-sharpTest'>
-      </div>
-
       
       <div className="image-comparison-container" style={{ position: 'relative', width: '100%', height: '425px' }}>
         <img src='src/assets/infoSharp1.jpg' style={{ position: 'absolute', width: '100%', height: '100%', zIndex: 1 }} alt="Normální vidění" />
