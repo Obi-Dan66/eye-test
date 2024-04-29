@@ -13,6 +13,12 @@ import AstigmatismTest from './components/astigmatismTest.jsx';
 import EyeFieldTest from './components/eyeFieldTest.jsx';
 import ColorTest from './components/colorTest.jsx';
 import TestSelection from './components/testSelection.jsx';
+import InfoSharptest from './infoPages/infoSharptest.jsx';
+import InfoAstigmatismtest from './infoPages/infoAstigmatismtest.jsx';
+import InfoColortest from './infoPages/infoColortest.jsx';
+import InfoEyeFieldtest from './infoPages/infoEyeFieldtest.jsx';
+import InfoContrasttest from './infoPages/infoContrasttest.jsx';
+
 
 const App = () => {
   return (
@@ -30,6 +36,11 @@ const App = () => {
         <Route path="/test-zorneho-pole" element={<EyeFieldTest />} />
         <Route path="/test-kontrastniho-videni" element={<ContrastTest />} />
         <Route path="/test-zrakove-ostrosti" element={<SharpTest />}/>
+        <Route path="/info-test-zrakove-ostrosti" element={<InfoSharptest />}/>
+        <Route path="/info-test-astigmatismu" element={<InfoAstigmatismtest />}/>
+        <Route path="/info-test-barevneho-videni" element={<InfoColortest />}/>
+        <Route path="/info-test-zorneho-pole" element={<InfoEyeFieldtest />}/>
+        <Route path="/info-test-kontrastniho-videni" element={<InfoContrasttest />}/>
       </Routes>
     </Router>
   );

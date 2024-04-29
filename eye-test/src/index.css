@@ -16,10 +16,10 @@
 .test-selection {
 background-color: white;
 margin: auto;
-margin-top: 10px;
+margin-top: 20px;
 border-radius: 30px;
 width: 25%;
-padding: 10px;
+padding: 15px;
 }
 
 .test-selection button {
@@ -27,6 +27,10 @@ padding: 10px;
 }
 
 .test-selection h2 {
+  color: #000000;
+}
+
+h2 {
   color: #000000;
 }
 
@@ -465,4 +469,15 @@ padding: 10px;
 
 .result-map button {
   margin-top: 10px;
+}
+
+.test-info-page{
+  display: block;
+  margin: auto;
+  width: 50%;
+  text-align: center;
+}
+
+.info-sharp-decription {
+  text-align: left;
 }
