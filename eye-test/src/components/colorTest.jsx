@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 const ColorTest = () => {
   const [currentContent, setCurrentContent] = useState(0);
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
+  const [showTick, setShowTick] = useState(false);
+  const [iconType, setIconType] = useState(null);
 
   const totalContents = 7;
 

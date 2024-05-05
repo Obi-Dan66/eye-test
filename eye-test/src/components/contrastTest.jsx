@@ -6,6 +6,8 @@ const ContrastTest = () => {
   const [correctAnswersRange1, setCorrectAnswersRange1] = useState(0); // For cases 0-7
   const [correctAnswersRange2, setCorrectAnswersRange2] = useState(0); // For cases 9-16
   const totalCases = 18; // Adjust based on your actual cases
+  const [showTick, setShowTick] = useState(false);
+  const [iconType, setIconType] = useState(null);
 
   // Define correctButtonForCase here for simplicity
   const correctButtonForCase = {
@@ -29,35 +31,39 @@ const ContrastTest = () => {
   };
 
   const handleClick = (buttonId) => {
-    // Directly skip logic for case 8
     if (currentContent === 8) {
       setCurrentContent(prevContent => (prevContent + 1) % totalCases);
-      setClickedButton(null); // Reset clicked button for visual feedback
-      return; // Skip the rest of the handleClick logic
+      setClickedButton(null);
+      setShowTick(false);
+      setIconType(null);  // Reset icon type
+      return;
     }
   
-    // Check if the clicked button is the correct answer for the current case
     if (correctButtonForCase[currentContent] === buttonId) {
-      // Increment correct answers for the specific range
       if (currentContent >= 0 && currentContent <= 7) {
-        setCorrectAnswersRange1(prevCount => {
-          return prevCount + 1;
-        });
+        setCorrectAnswersRange1(prevCount => prevCount + 1);
       } else if (currentContent >= 9 && currentContent <= 16) {
-        setCorrectAnswersRange2(prevCount => {
-          return prevCount + 1;
-        });
+        setCorrectAnswersRange2(prevCount => prevCount + 1);
       }
+  
+      setClickedButton(buttonId);
+      setShowTick(true); // Show the tick animation
+      setIconType('checkmark'); // Set icon to checkmark for correct answer
+
+      setTimeout(() => {
+        setCurrentContent(prevContent => (prevContent + 1) % totalCases);
+        setClickedButton(null);
+        setShowTick(false); // Hide the tick after the animation
+        setIconType(null);  // Reset icon type
+      }, 800);
     } else {
+      setCurrentContent(prevContent => (prevContent + 1) % totalCases);
+      setIconType('cross'); // Set icon to cross for incorrect answer
+
+      setTimeout(() => {
+        setIconType(null);  // Reset icon type after showing cross
+      }, 800);
     }
-  
-    // Move to the next content, with logic to potentially handle end of test or transition between sections
-    setCurrentContent(prevContent => {
-      const newContent = (prevContent + 1) % totalCases;
-      return newContent;
-    });
-  
-    setClickedButton(null); // Reset clicked button for visual feedback
   };
 
   const getContent = (currentContent) => {
@@ -120,6 +126,12 @@ const ContrastTest = () => {
         </svg>
       </div>
       <div className='circle1'>
+      {iconType === 'checkmark' && (
+           <img src='src/assets/checkmark.svg' className="tick-animation" alt="Tick" />
+         )}
+         {iconType === 'cross' && (
+           <img src='src/assets/cross.svg' className="tick-animation" alt="Cross" />
+         )}
       <svg viewBox="0 0 100% 100%" xmlns="http://www.w3.org/2000/svg">
       <path id="TOP" onClick={() => handleClick('TOP')} style={{ opacity: clickedButton === 'TOP' ? 0 : 1 }} d="M158.934 57.545a77.47 77.47 0 00-13.211-3.957 78.642 78.642 0 00-31.437 0 77.47 77.47 0 00-13.211 3.957l-19.9-48.059a130.162 130.162 0 0197.674 0z"></path>
       <path id="TOPRIGHT" onClick={() => handleClick('TOPRIGHT')} style={{ opacity: clickedButton === 'TOPRIGHT' ? 0 : 1 }} d="M201.693 99.226a78.216 78.216 0 00-40.914-40.914l19.906-48.059a130.414 130.414 0 0169.066 69.066l-48.059 19.907z"></path>
@@ -151,6 +163,12 @@ const renderSvgContainer2 = (clickedButton, handleClick, transformStyle, colorSt
     </svg>
   </div>
   <div className='circle1'>
+  {iconType === 'checkmark' && (
+           <img src='src/assets/checkmark.svg' className="tick-animation" alt="Tick" />
+         )}
+         {iconType === 'cross' && (
+           <img src='src/assets/cross.svg' className="tick-animation" alt="Cross" />
+         )}
   <svg viewBox="0 0 100% 100%" xmlns="http://www.w3.org/2000/svg">
   <path id="TOP" onClick={() => handleClick('TOP')} style={{ opacity: clickedButton === 'TOP' ? 0 : 1 }} d="M158.934 57.545a77.47 77.47 0 00-13.211-3.957 78.642 78.642 0 00-31.437 0 77.47 77.47 0 00-13.211 3.957l-19.9-48.059a130.162 130.162 0 0197.674 0z"></path>
   <path id="TOPRIGHT" onClick={() => handleClick('TOPRIGHT')} style={{ opacity: clickedButton === 'TOPRIGHT' ? 0 : 1 }} d="M201.693 99.226a78.216 78.216 0 00-40.914-40.914l19.906-48.059a130.414 130.414 0 0169.066 69.066l-48.059 19.907z"></path>
