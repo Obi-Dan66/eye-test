@@ -3,22 +3,28 @@ import React, { useState } from 'react';
 const ColorTest = () => {
   const [currentContent, setCurrentContent] = useState(0);
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0);
-  const [showTick, setShowTick] = useState(false);
-  const [iconType, setIconType] = useState(null);
+  const [clickedButtonId, setClickedButtonId] = useState(null);
+  
 
   const totalContents = 7;
 
-  const handleClick = (isCorrect) => {
-    // Increment correct answers count if the answer is correct
-    if (isCorrect) {
-      setCorrectAnswersCount(prevCount => prevCount + 1);
-    }
+  const handleClick = (buttonId, isCorrect) => {
+    setClickedButtonId(buttonId);
   
-    // Move to the next content
-    setCurrentContent((prevContent) => (prevContent + 1) % totalContents);
+    setTimeout(() => {
+      setCurrentContent((prevContent) => (prevContent + 1) % totalContents);
+      setClickedButtonId(null);
+
+      if (isCorrect) {
+        setCorrectAnswersCount((prevCount) => prevCount + 1);
+      }
+    }, 800);  // Delay to show the icon before moving to the next content
   };
 
   const getContent = (contentIndex) => {
+    const correctClicked = clickedButtonId === 'correct' && currentContent === contentIndex;
+    const wrongClicked = clickedButtonId !== 'correct' && currentContent === contentIndex;
+
     switch (contentIndex) {
       case 0:
         return (
@@ -30,10 +36,10 @@ const ColorTest = () => {
                 <div className='colorTestCard' style={{backgroundColor:'white'}}>
                 <img className= "color-image" src='src\assets\12.svg' width={200} height={200} alt="color test"></img>
                 <div>
-                <button className='colorTestBtn' onClick={() => handleClick(false)}>31</button>
-                <button className='colorTestBtn correct' onClick={() => handleClick(true)}>12</button>
-                <button className='colorTestBtn' onClick={() => handleClick(false)}>71</button>
-                <button className='colorTestBtn' onClick={() => handleClick(false)}>Nic</button>
+                <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>31</button>
+                <button className={`colorTestBtn ${correctClicked ? 'correct' : ''}`} onClick={() => handleClick('correct', true)}>12</button>
+                <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>71</button>
+                <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>Nic</button>
               </div>
             </div>
         </div>);
@@ -47,10 +53,10 @@ const ColorTest = () => {
           <div className='colorTestCard' style={{backgroundColor:'white'}}>
           <img className= "color-image" src='src\assets\8.svg' width={200} height={200} alt="color test"></img>
           <div>
-          <button className='colorTestBtn correct' onClick={() => handleClick(true)}>8</button>
-          <button className='colorTestBtn' onClick={() => handleClick(false)}>3</button>
-          <button className='colorTestBtn' onClick={() => handleClick(false)}>11</button>
-          <button className='colorTestBtn' onClick={() => handleClick(false)}>Nic</button>
+          <button className={`colorTestBtn ${correctClicked ? 'correct' : ''}`} onClick={() => handleClick('correct', true)}>8</button>
+          <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>3</button>
+          <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>11</button>
+          <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>Nic</button>
         </div>
         </div>
   </div>);
@@ -64,10 +70,10 @@ const ColorTest = () => {
           <div className='colorTestCard' style={{backgroundColor:'white'}}>
           <img className= "color-image" src='src\assets\3.svg' width={200} height={200} alt="color test"></img>
           <div>
-          <button className='colorTestBtn' onClick={() => handleClick(false)}>5</button>
-          <button className='colorTestBtn correct' onClick={() => handleClick(true)}>3</button>
-          <button className='colorTestBtn' onClick={() => handleClick(false)}>27</button>
-          <button className='colorTestBtn' onClick={() => handleClick(false)}>Nic</button>
+          <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>5</button>
+          <button className={`colorTestBtn ${correctClicked ? 'correct' : ''}`} onClick={() => handleClick('correct', true)}>3</button>
+          <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>27</button>
+          <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>Nic</button>
         </div>
       </div>
   </div>);
@@ -81,10 +87,10 @@ const ColorTest = () => {
           <div className='colorTestCard' style={{backgroundColor:'white'}}>
           <img className= "color-image" src='src\assets\45.svg' width={200} height={200} alt="color test"></img>
           <div>
-          <button className='colorTestBtn' onClick={() => handleClick(false)}>36</button>
-          <button className='colorTestBtn correct' onClick={() => handleClick(true)}>45</button>
-          <button className='colorTestBtn' onClick={() => handleClick(false)}>60</button>
-          <button className='colorTestBtn' onClick={() => handleClick(false)}>Nic</button>
+          <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>36</button>
+          <button className={`colorTestBtn ${correctClicked ? 'correct' : ''}`} onClick={() => handleClick('correct', true)}>45</button>
+          <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>60</button>
+          <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>Nic</button>
         </div>
       </div>
   </div>);
@@ -98,10 +104,10 @@ const ColorTest = () => {
           <div className='colorTestCard' style={{backgroundColor:'white'}}>
           <img className= "color-image" src='src\assets\5.svg' width={200} height={200} alt="color test"></img>
           <div>
-          <button className='colorTestBtn correct' onClick={() => handleClick(true)}>5</button>
-          <button className='colorTestBtn' onClick={() => handleClick(false)}>57</button>
-          <button className='colorTestBtn' onClick={() => handleClick(false)}>14</button>
-          <button className='colorTestBtn' onClick={() => handleClick(false)}>Nic</button>
+          <button className={`colorTestBtn ${correctClicked ? 'correct' : ''}`} onClick={() => handleClick('correct', true)}>5</button>
+          <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>57</button>
+          <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>14</button>
+          <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>Nic</button>
         </div>
       </div>
   </div>);
@@ -115,10 +121,10 @@ const ColorTest = () => {
           <div className='colorTestCard' style={{backgroundColor:'white'}}>
             <img className= "color-image" src='src\assets\nic.svg' width={200} height={200} alt="color test"></img>
             <div>
-            <button className='colorTestBtn' onClick={() => handleClick(false)}>45</button>
-            <button className='colorTestBtn' onClick={() => handleClick(false)}>70</button>
-            <button className='colorTestBtn' onClick={() => handleClick(false)}>6</button>
-            <button className='colorTestBtn correct' onClick={() => handleClick(true)}>Nic</button>
+            <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>45</button>
+            <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>70</button>
+            <button className={`colorTestBtn ${wrongClicked ? 'wrong' : ''}`} onClick={() => handleClick('wrong', false)}>6</button>
+            <button className={`colorTestBtn ${correctClicked ? 'correct' : ''}`} onClick={() => handleClick('correct', true)}>Nic</button>
           </div>
       </div>
   </div>);
